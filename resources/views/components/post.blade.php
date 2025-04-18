@@ -1,4 +1,4 @@
-<div class="bg-white shadow overflow-hidden sm:rounded-md">
+<div class="bg-white shadow rounded-lg overflow-hidden">
     @php
     $posts = [
         [
@@ -34,33 +34,45 @@
     ];
     @endphp
 
+    <div class="border-b border-gray-200 px-4 py-4 sm:px-6 bg-gray-50">
+        <h2 class="text-lg font-medium text-gray-900">最新の投稿</h2>
+    </div>
+
     <ul class="divide-y divide-gray-200">
         @forelse($posts as $post)
-        <li>
-            <div class="px-4 py-4 sm:px-6">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
+        <li class="hover:bg-gray-50 transition duration-150">
+            <div class="px-4 py-5 sm:px-6">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-4">
                         <img class="h-10 w-10 rounded-full" src="{{ $post['user']['profile_image'] }}" alt="{{ $post['user']['name'] }}">
-                        <div class="ml-4">
-                            <a href="{{ url('/posts/' . $post['id']) }}" class="text-lg font-medium text-indigo-600 hover:text-indigo-700">
-                                {{ $post['title'] }}
-                            </a>
-                            <div class="mt-1">
-                                <span class="text-sm text-gray-500">
-                                    投稿者: {{ $post['user']['name'] }} • {{ $post['created_at'] }}
-                                </span>
-                                <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                    {{ $post['category']['name'] }}
-                                </span>
-                            </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <a href="{{ url('/posts/' . $post['id']) }}" class="text-lg font-medium text-blue-600 hover:text-blue-700 hover:underline">
+                            {{ $post['title'] }}
+                        </a>
+                        <div class="mt-1 flex items-center">
+                            <span class="text-sm font-medium text-gray-900">{{ $post['user']['name'] }}</span>
+                            <span class="mx-1 text-sm text-gray-500">•</span>
+                            <span class="text-sm text-gray-500">{{ $post['created_at'] }}</span>
+                            <span class="mx-1 text-sm text-gray-500">•</span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                {{ $post['category']['name'] }}
+                            </span>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-4 text-sm text-gray-500">
-                        <div>
-                            <span class="font-medium">{{ $post['comments_count'] }}</span> 返信
+                    <div class="flex-shrink-0 ml-4 flex items-center space-x-4 text-sm text-gray-500">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1 text-gray-400">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            <span>{{ $post['comments_count'] }}</span>
                         </div>
-                        <div>
-                            <span class="font-medium">{{ $post['views_count'] }}</span> 閲覧
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1 text-gray-400">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <span>{{ $post['views_count'] }}</span>
                         </div>
                     </div>
                 </div>
