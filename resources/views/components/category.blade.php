@@ -5,7 +5,7 @@
             'id' => 1,
             'name' => 'ディスカッション',
             'icon_svg' => '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
-            'icon_color' => 'text-indigo-600',
+            'icon_color' => 'text-blue-600',
             'topics_count' => 142
         ],
         [
@@ -26,8 +26,8 @@
     @endphp
 
     @foreach($categories as $category)
-    <div class="bg-white overflow-hidden shadow rounded-lg">
-        <a href="{{ url('/categories/' . $category['id']) }}">
+    <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-md transition duration-150">
+        <a href="{{ url('/categories/' . $category['id']) }}" class="block">
             <div class="p-5">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
